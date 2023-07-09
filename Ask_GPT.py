@@ -86,9 +86,9 @@ def speak(text_words):
     result = speech_synthesizer.speak_text_async(text_words).get()
 
     # Checks result.
-    if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-        print("Speech synthesized to speaker for text [{}]".format(text_words))
-    elif result.reason == speechsdk.ResultReason.Canceled:
+    # if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
+        # print("Speech synthesized to speaker for text [{}]".format(text_words))
+    if result.reason == speechsdk.ResultReason.Canceled:
         cancellation_details = result.cancellation_details
         print("Speech synthesis canceled: {}".format(cancellation_details.reason))
         if cancellation_details.reason == speechsdk.CancellationReason.Error:
@@ -125,6 +125,7 @@ if __name__ == '__main__':
                     if flag == 1:
                         if  is_intend_to_leave(text):
                             speak("see you.")
+                            print ("AI Robot said: see you")
                             break
                         res = chat(text, api_key)
                         speak(res)
